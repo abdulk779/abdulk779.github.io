@@ -1,221 +1,343 @@
 <!DOCTYPE html>
-<html>
-<title>AK Portfolio</title>
-<meta charset="UTF-8">
-<meta name="google-site-verification" content="48YKgmMfe7T7AUhbNDSmkL0UhlfjAhVr4GmG9DMzE_s" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
-.w3-row-padding img {margin-bottom: 12px}
-/* Set the width of the sidebar to 120px */
-.w3-sidebar {width: 120px;background: #222;}
-/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
-#main {margin-left: 120px}
-/* Remove margins from "page content" on small screens */
-@media only screen and (max-width: 600px) {#main {margin-left: 0}}
-</style>
-<body class="w3-black">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticker Shop - Fun Stickers Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<!-- Icon Bar (Sidebar - hidden on small screens) -->
-<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
-  <!-- Avatar image in top left corner -->
-  <!--img src="C:\Users\Dell\Desktop\MG-20210527-WA0011.jpg" style="width:100%"-->
-  <a href="#home" class="w3-bar-item w3-button w3-padding-large w3-black">
-    <i class="fa fa-home w3-xxlarge"></i>
-    <p>HOME</p>
-  </a>
-  <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-user w3-xxlarge"></i>
-    <p>ABOUT</p>
-  </a>
-  <a href="#photos" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-eye w3-xxlarge"></i>
-    <p>PHOTOS</p>
-  </a>
-  <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-envelope w3-xxlarge"></i>
-    <p>CONTACT</p>
-  </a>
-</nav>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-<!-- Navbar on small screens (Hidden on medium and large screens) -->
-<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
-  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-    <a href="#home" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
-    <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
-    <a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">PHOTOS</a>
-    <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
-  </div>
-</div>
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
 
-<!-- Page Content -->
-<div class="w3-padding-large" id="main">
-  <!-- Header/Home -->
-  <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
-    <h1 class="w3-jumbo"><span class="w3-hide-small">I'm</span> Abdul Khaliq.</h1>
-    <p>WEB DESIGNER AND SOFTWARE ENGINEER.</p>
-    <!--img src="C:\Users\Dell\Desktop\MG-20210527-WA0011.jpg" alt="boy" width="992" height="1108"-->
-  </header>
+        .header h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
 
-  <!-- About Section -->
-  <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
-    <h2 class="w3-text-light-grey">About Myself</h2>
-    <hr style="width:200px" class="w3-opacity">
-    <p>Hello There!
-	I am a Web designer and a Software Programmer and have an expertise in both HTML and CSS and I had also worked in Java and C++ language. Further more, I am also doing Python lanuguage. 
-    </p>
-    <h3 class="w3-padding-16 w3-text-light-grey">My Skills</h3>
-    <p class="w3-wide">JAVA & C Language</p>
-    <div class="w3-white">
-      <div class="w3-dark-grey w3-center" style="height:28px;width:80%">80%</div>
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .sticker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sticker-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sticker-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .sticker-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .sticker-card:hover::before {
+            left: 100%;
+        }
+
+        .sticker-emoji {
+            font-size: 6em;
+            margin-bottom: 15px;
+            display: block;
+            filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3));
+        }
+
+        .sticker-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .sticker-desc {
+            color: #666;
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+
+        .buy-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(238, 90, 36, 0.4);
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(238, 90, 36, 0.6);
+        }
+
+        .categories {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .category-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 10px 25px;
+            margin: 0 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .sticker-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.2em;
+            }
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            animation: float 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts">✨</div>
+    
+    <div class="header">
+        <h1>🎉 Sticker Shop 🎉</h1>
+        <p>Collect the coolest stickers for your messages!</p>
     </div>
-    <p class="w3-wide">Web Designing (HTML & CSS)</p>
-    <div class="w3-white">
-      <div class="w3-dark-grey w3-center" style="height:28px;width:90%">90%</div>
-    </div><br>
-    
-    <!--div class="w3-row w3-center w3-padding-16 w3-section w3-light-grey">
-      <div class="w3-quarter w3-section">
-        <span class="w3-xlarge">11+</span><br>
-        Partners
-      </div>
-      <div class="w3-quarter w3-section">
-        <span class="w3-xlarge">55+</span><br>
-        Projects Done
-      </div>
-      <div class="w3-quarter w3-section">
-        <span class="w3-xlarge">89+</span><br>
-        Happy Clients
-      </div>
-      <div class="w3-quarter w3-section">
-        <span class="w3-xlarge">150+</span><br>
-        Meetings
-      </div>
-    </div-->
 
-      <button class= class="w3-sidebar" onClick="download"> 
-	<a href="https://documentcloud.adobe.com/link/review?uri=urn:aaid:scds:US:0264d215-63f6-42e9-b60f-c61dd74494ab">
-      <i class="fa fa-download"></i> Download Resume
-	  </a>
-    </button>
-    
-    <!-- Grid for pricing tables -->
-    <h3 class="w3-padding-16 w3-text-light-grey">My Price</h3>
-    <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-half w3-margin-bottom">
-        <ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off">
-          <li class="w3-dark-grey w3-xlarge w3-padding-32">Basic</li>
-          <li class="w3-padding-16">Web Design</li>
-          <li class="w3-padding-16">5GB Storage</li>
-          <li class="w3-padding-16">Mail Support</li>
-          <li class="w3-padding-16">
-            <h2>$ 10</h2>
-            <span class="w3-opacity">per month</span>
-          </li>
-          <li class="w3-light-grey w3-padding-24">
-            <button class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
-          </li>
-        </ul>
-      </div>
-
-      <div class="w3-half">
-        <ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off">
-          <li class="w3-dark-grey w3-xlarge w3-padding-32">Pro</li>
-          <li class="w3-padding-16">Web Design</li>
-          <li class="w3-padding-16">50GB Storage</li>
-          <li class="w3-padding-16">Endless Support</li>
-          <li class="w3-padding-16">
-            <h2>$ 25</h2>
-            <span class="w3-opacity">per month</span>
-          </li>
-          <li class="w3-light-grey w3-padding-24">
-            <button class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
-          </li>
-        </ul>
-      </div>
-    <!-- End Grid/Pricing tables -->
+    <div class="categories">
+        <button class="category-btn active" onclick="filterStickers('all')">All</button>
+        <button class="category-btn" onclick="filterStickers('animals')">Animals</button>
+        <button class="category-btn" onclick="filterStickers('food')">Food</button>
+        <button class="category-btn" onclick="filterStickers('emotions')">Emotions</button>
+        <button class="category-btn" onclick="filterStickers('objects')">Objects</button>
     </div>
-    
-    <!-- Testimonials -->
-    <!--h3 class="w3-padding-24 w3-text-light-grey">My Reputation</h3>  
-    <img src="/w3images/bandmember.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
-    <p><span class="w3-large w3-margin-right">Chris Fox.</span> CEO at Mighty Schools.</p>
-    <p>John Doe saved us from a web disaster.</p><br>
-    
-    <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
-    <p><span class="w3-large w3-margin-right">Rebecca Flex.</span> CEO at Company.</p>
-    <p>No one is better than John Doe.</p>
-  <!-- End About Section -->
-  </div>
-  
-  <!-- Portfolio Section -->
-  <div class="w3-padding-64 w3-content" id="photos">
-    <h2 class="w3-text-light-grey">My Photos</h2>
-    <hr style="width:200px" class="w3-opacity">
 
-    <!-- Grid for photos -->
-    <div class="row-padding" style="margin:0 -16px">
-      <div class="half">
-	<tr>
-        <td align="center"><img src="IMG-20210527-WA0011.jpg" height="350" width="300" style="border-right-style:inherit"></td>
-	</tr>
-      </div>
+    <div class="sticker-grid" id="stickerGrid">
+        <!-- Animals -->
+        <div class="sticker-card" data-category="animals">
+            <span class="sticker-emoji">🐱</span>
+            <div class="sticker-name">Cute Cat</div>
+            <div class="sticker-desc">Perfect for cat lovers!</div>
+            <div class="price">$0.99</div>
+            <button class="buy-btn" onclick="buySticker('Cute Cat')">Add to Cart 🛒</button>
+        </div>
 
-      <!--div class="w3-half">
-        <img src="/w3images/underwater.jpg" style="width:100%">
-        <img src="/w3images/chef.jpg" style="width:100%">
-        <img src="/w3images/wedding.jpg" style="width:100%">
-        <img src="/w3images/p6.jpg" style="width:100%">
-      </div>
-    <!-- End photo grid -->
+        <div class="sticker-card" data-category="animals">
+            <span class="sticker-emoji">🐶</span>
+            <div class="sticker-name">Happy Dog</div>
+            <div class="sticker-desc">Wag your tail with joy!</div>
+            <div class="price">$0.99</div>
+            <button class="buy-btn" onclick="buySticker('Happy Dog')">Add to Cart 🛒</button>
+        </div>
+
+        <div class="sticker-card" data-category="animals">
+            <span class="sticker-emoji">🦄</span>
+            <div class="sticker-name">Magic Unicorn</div>
+            <div class="sticker-desc">Sprinkle some magic!</div>
+            <div class="price">$1.49</div>
+            <button class="buy-btn" onclick="buySticker('Magic Unicorn')">Add to Cart 🛒</button>
+        </div>
+
+        <!-- Food -->
+        <div class="sticker-card" data-category="food">
+            <span class="sticker-emoji">🍕</span>
+            <div class="sticker-name">Pizza Party</div>
+            <div class="sticker-desc">Pizza time anywhere!</div>
+            <div class="price">$0.79</div>
+            <button class="buy-btn" onclick="buySticker('Pizza Party')">Add to Cart 🛒</button>
+        </div>
+
+        <div class="sticker-card" data-category="food">
+            <span class="sticker-emoji">🍩</span>
+            <div class="sticker-name">Donut Dream</div>
+            <div class="sticker-desc">Sweet tooth satisfaction</div>
+            <div class="price">$0.89</div>
+            <button class="buy-btn" onclick="buySticker('Donut Dream')">Add to Cart 🛒</button>
+        </div>
+
+        <div class="sticker-card" data-category="food">
+            <span class="sticker-emoji">🍦</span>
+            <div class="sticker-name">Ice Cream</div>
+            <div class="sticker-desc">Cool and delicious!</div>
+            <div class="price">$0.99</div>
+            <button class="buy-btn" onclick="buySticker('Ice Cream')">Add to Cart 🛒</button>
+        </div>
+
+        <!-- Emotions -->
+        <div class="sticker-card" data-category="emotions">
+            <span class="sticker-emoji">😂</span>
+            <div class="sticker-name">LOL Face</div>
+            <div class="sticker-desc">When something's hilarious</div>
+            <div class="price">$0.69</div>
+            <button class="buy-btn" onclick="buySticker('LOL Face')">Add to Cart 🛒</button>
+        </div>
+
+        <div class="sticker-card" data-category="emotions">
+            <span class="sticker-emoji">😍</span>
+            <div class="sticker-name">Heart Eyes</div>
+            <div class="sticker-desc">Total love!</div>
+            <div class="price">$0.79</div>
+            <button class="buy-btn" onclick="buySticker('Heart Eyes')">Add to Cart 🛒</button>
+        </div>
+
+        <div class="sticker-card" data-category="emotions">
+            <span class="sticker-emoji">😎</span>
+            <div class="sticker-name">Cool Dude</div>
+            <div class="sticker-desc">Stay cool always</div>
+            <div class="price">$0.89</div>
+            <button class="buy-btn" onclick="buySticker('Cool Dude')">Add to Cart 🛒</button>
+        </div>
+
+        <!-- Objects -->
+        <div class="sticker-card" data-category="objects">
+            <span class="sticker-emoji">🚀</span>
+            <div class="sticker-name">Rocket Ship</div>
+            <div class="sticker-desc">To the moon!</div>
+            <div class="price">$1.29</div>
+            <button class="buy-btn" onclick="buySticker('Rocket Ship')">Add to Cart 🛒</button>
+        </div>
+
+        <div class="sticker-card" data-category="objects">
+            <span class="sticker-emoji">🎸</span>
+            <div class="sticker-name">Rock Guitar</div>
+            <div class="sticker-desc">Rock on! 🎵</div>
+            <div class="price">$1.19</div>
+            <button class="buy-btn" onclick="buySticker('Rock Guitar')">Add to Cart 🛒</button>
+        </div>
+
+        <div class="sticker-card" data-category="objects">
+            <span class="sticker-emoji">⚡</span>
+            <div class="sticker-name">Lightning Bolt</div>
+            <div class="sticker-desc">Super charged energy!</div>
+            <div class="price">$0.99</div>
+            <button class="buy-btn" onclick="buySticker('Lightning Bolt')">Add to Cart 🛒</button>
+        </div>
     </div>
-  <!-- End Portfolio Section -->
-  </div>
 
-  <!-- Contact Section -->
-  <div class="padding-64 content text-grey" id="contact">
-    <h2 class="text-light-grey">Contact Me</h2>
-    <hr style="width:150px" class="opacity">
+    <script>
+        let cart = [];
 
-    <div class="w3-section">
-      <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Karachi Pakistan</p>
-      <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: +92 300-8250779</p>
-      <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Email: smmuli12@gmail.com</p>
-    </div><br>
-    <p>Let's get in touch. Send me a message:</p>
+        function buySticker(stickerName) {
+            cart.push(stickerName);
+            // Create fun animation
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = '✨';
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = '50%';
+            sparkle.style.fontSize = '2em';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.animation = 'float 2s ease-out forwards';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => sparkle.remove(), 2000);
+            
+            alert(`Added "${stickerName}" to cart! 🎉\nCart now has ${cart.length} items.`);
+        }
 
-    <form action="abcd.txt" target="_blank">
-      <p><input class="w3-input w3-padding-12" type="text" placeholder="Name" required name="Name"></p>
-      <p><input class="w3-input w3-padding-12" type="text" placeholder="Email" required name="Email"></p>
-      <p><input class="w3-input w3-padding-12" type="text" placeholder="Subject" required name="Subject"></p>
-      <p><input class="w3-input w3-padding-12" type="text" placeholder="Message" required name="Message"></p>
-      <p>
-        <button class="w3-button w3-light-grey w3-padding-large" type="submit">
-          <i class="fa fa-paper-plane"></i> SEND MESSAGE
-        </button>
-      </p>
-    </form>
-  <!-- End Contact Section -->
-  </div>
-  
-    <!-- Footer -->
-	<p> <font size="5" style="font-style:normal"> You can also check me on these social websites </font> </p>
-  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
-	<i class="fa fa-facebook w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
-	<i class="fa fa-github w3-hover-opacity"></i>
+        function filterStickers(category) {
+            const cards = document.querySelectorAll('.sticker-card');
+            const buttons = document.querySelectorAll('.category-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.5s ease-in';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
 
-	<!--a href="https://www.fiverr.com/abdul_khaliq23?up_rollout=true">
-	<i class=""
-    <!--p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-  <!-- End footer -->
-  </footer>
-
-<!-- END PAGE CONTENT -->
-</div>
-
+        // Add some entrance animation
+        window.addEventListener('load', () => {
+            const cards = document.querySelectorAll('.sticker-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
 </body>
 </html>
